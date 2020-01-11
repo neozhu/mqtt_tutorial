@@ -1,0 +1,17 @@
+<demo-block title="主机监控">
+  <van-panel title="主机" desc="IP：127.0.0.1" status="{{state}}" use-footer-slot>
+    <view class="content">
+      <ff-canvas id="line-dom" canvas-id="line" opts="{{ opts }}"></ff-canvas>
+    </view>
+    <view slot="footer" class="footer">
+
+          <van-button  size="small" disabled="{{disabled}}" 
+bind:click="start" class="demo-margin-right">开始</van-button>
+
+          <van-button  size="small" disabled="{{!disabled}}" 
+bind:click="stop" type="danger">停止</van-button>
+ 
+    </view>
+  </van-panel>
+</demo-block>
+<van-notify id="van-notify" />
