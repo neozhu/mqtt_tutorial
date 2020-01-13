@@ -57,7 +57,7 @@ export default {
     start() {
       //const that = this;
       const url = "wss://guangzhoushizhuo.xyz:8084/mqtt";
-      const topic = "testtopic/#";
+      const topic = "host/cpu/#";
       const clientId =
         "vueclient_" +
         Math.random()
@@ -101,12 +101,18 @@ export default {
       client.on("message", (tp, playload) => {
         const item = JSON.parse(playload);
         this.text = `${tp} | ${item.time} : ${item.value}`;
-        this.snackbar = true;
+        if(item.value>80){
+          this.snackbar = true;
+          this.text = "CPU超过安全负载";
+          this.state = "高负载";
+        }else{
+          this.state = "正常";
+        }
         this.cpuefficiency = item.value;
         this.cpuefficiency = item.value.toFixed(2);
         this.datasource.push(item);
 
-        if (this.datasource.length >= 10) {
+        if (this.datasource.length >= 30) {
           this.datasource.shift();
         }
         chart.changeData(this.datasource);

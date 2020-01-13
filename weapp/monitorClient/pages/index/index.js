@@ -21,7 +21,7 @@ Page({
   },
   start(){
     const url = "wxs://guangzhoushizhuo.xyz:8084/mqtt";
-    const topic = "testtopic/#";
+    const topic = "host/cpu/#";
     const clientId =
       "weappclient_" +
       Math.random()
@@ -73,7 +73,7 @@ Page({
       const item = JSON.parse(playload);
       console.log(`received:${tp} | ${item.msg}`);
       data.unshift(item);
-      if (data.length >= 10) {
+      if (data.length >= 30) {
         data.pop()
       }
       chart.changeData(data);
