@@ -1,8 +1,6 @@
 <template>
   <v-container>
-    <v-snackbar v-model="snackbar">
-      {{ text }}
-    </v-snackbar>
+    <v-snackbar v-model="snackbar">{{ text }}</v-snackbar>
     <v-card class="mx-auto" max-width="400">
       <v-list-item two-line>
         <v-list-item-content>
@@ -13,8 +11,8 @@
 
       <v-card-text>
         <v-row align="center">
-          <v-col class="display-2" cols="6"> {{ cpuefficiency }} </v-col>
-          <v-col class="display-2" cols="6"> {{ state }} </v-col>
+          <v-col class="display-2" cols="6">{{ cpuefficiency }}</v-col>
+          <v-col class="display-2" cols="6">{{ state }}</v-col>
         </v-row>
       </v-card-text>
 
@@ -26,9 +24,7 @@
       <v-divider></v-divider>
       <v-card-actions>
         <v-btn :disabled="disabled" text @click="start()">开始</v-btn>
-        <v-btn :disabled="!disabled" color="error" @click="stop()" text
-          >停止</v-btn
-        >
+        <v-btn :disabled="!disabled" color="error" @click="stop()" text>停止</v-btn>
       </v-card-actions>
     </v-card>
   </v-container>
@@ -101,11 +97,11 @@ export default {
       client.on("message", (tp, playload) => {
         const item = JSON.parse(playload);
         this.text = `${tp} | ${item.time} : ${item.value}`;
-        if(item.value>80){
+        if (item.value > 80) {
           this.snackbar = true;
           this.text = "CPU超过安全负载";
           this.state = "高负载";
-        }else{
+        } else {
           this.state = "正常";
         }
         this.cpuefficiency = item.value;
@@ -124,12 +120,11 @@ export default {
       client.unsubscribe(topic, error => {
         if (!error) {
           client.end(true);
-              this.state = "停止";
-              this.text = "关闭订阅";
-              this.snackbar = true;
-              this.cpuefficiency = 0;
-              this.disabled = false;
-        
+          this.state = "停止";
+          this.text = "关闭订阅";
+          this.snackbar = true;
+          this.cpuefficiency = 0;
+          this.disabled = false;
         }
       });
 
