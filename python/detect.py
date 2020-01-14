@@ -5,7 +5,7 @@ import pyzbar.pyzbar as pyzbar
 
 def decodeDisplay(image):
     barcodes = pyzbar.decode(image)
-    print('Decoded:', barcodes)
+    # print('Decoded:', barcodes)
     for barcode in barcodes:
         # 提取条形码的边界框的位置
         # 画出图像中条形码的边界框
@@ -33,12 +33,12 @@ def detect():
 
     while True:
         # 读取当前帧
-        #ret, frame = camera.read()
+        ret, frame = camera.read()
 
         # 转为灰度图像
-        #gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        im = cv2.imread("code.jpg")  
-        im = decodeDisplay(im)
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        #im = cv2.imread("2.png")
+        im = decodeDisplay(gray)
 
         cv2.waitKey(5)
         cv2.imshow("camera", im)
