@@ -1,4 +1,5 @@
 import cv2
+import imutils
 import numpy as np
 import pyzbar.pyzbar as pyzbar
 from pyzbar.pyzbar import ZBarSymbol
@@ -43,16 +44,23 @@ def detect():
     # 转为灰度图像
     # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     image = cv2.imread('python/p22.jpg')
+    #image = imutils.resize(image, width=400)
     # gray = cv2.resize(gray,None,fx=0.5,fy=0.5,interpolation=cv2.INTER_CUBIC)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    blurImage = cv2.GaussianBlur(gray,(3,3),0);
+    # blurImage = cv2.medianBlur(gray,3)
+    #laplacian = cv2.Laplacian(gray,cv2.CV_64F)
+    #blurImage = cv2.GaussianBlur(gray,(3,3),0);
     # laplacian = cv2.Laplacian(blurImage,cv2.CV_64F)
     # binary=cv2.adaptiveThreshold(blurImage,255,cv2.THRESH_TOZERO,cv2.THRESH_BINARY,10,2)
-    ret , thresh1 = cv2.threshold(blurImage,120,255,cv2.THRESH_BINARY)
-    kernel = np.ones((1,1),np.uint8)
-    erosion = cv2.erode(thresh1,kernel,iterations=1)
+    # ret,th1 = cv2.threshold(blurImage,127,255,cv2.THRESH_BINARY)
+    # th2 = cv2.adaptiveThreshold(blurImage,255,cv2.ADAPTIVE_THRESH_MEAN_C,\
+    #        cv2.THRESH_BINARY,11,2)
+    #th3 = cv2.adaptiveThreshold(lap,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,\
+    #        cv2.THRESH_BINARY,11,2)
+    #kernel = np.ones((1,1),np.uint8)
+    #erosion = cv2.erode(th3,kernel,iterations=1)
  
-    im = decodeDisplay(erosion)
+    im = decodeDisplay(gray)
 
     cv2.waitKey(5)
     #cv2.namedWindow('camera',cv2.WINDOW_NORMAL)
