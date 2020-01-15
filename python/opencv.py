@@ -1,9 +1,9 @@
 import cv2
-import imutils
+#import imutils
 import numpy as np
 import pyzbar.pyzbar as pyzbar
 from pyzbar.pyzbar import ZBarSymbol
-from pylibdmtx import pylibdmtx
+#from pylibdmtx import pylibdmtx
 sorted(ZBarSymbol.__members__.keys())
 
 
@@ -43,7 +43,7 @@ def detect():
     # ret, frame = camera.read()
     # 转为灰度图像
     # gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    image = cv2.imread('python/p22.jpg')
+    image = cv2.imread('p6.jpg')
     #image = imutils.resize(image, width=400)
     # gray = cv2.resize(gray,None,fx=0.5,fy=0.5,interpolation=cv2.INTER_CUBIC)
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
