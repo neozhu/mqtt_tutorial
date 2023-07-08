@@ -10,7 +10,7 @@
   "dependencies": {
     "@antv/f2": "^3.5.0-beta.6",
     "core-js": "^3.4.4",
-    "mqtt": "^3.0.0",
+    "mqtt": "^4.3.7",
     "vue": "^2.6.10",
     "vuetify": "^2.6.10"
   },
